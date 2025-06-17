@@ -1,3 +1,12 @@
-<p>
-  pokemon-card works!
-</p>
+<ion-card 
+  *ngFor="let pokemon of pokemons" 
+  [class]="'type-' + pokemon.types[0].type.name"
+>
+  <img [src]="pokemon.sprites.front_default" alt="Pokémon" />
+  <ion-card-header>
+    <ion-card-title>{{ pokemon.name }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <p><b>Type:</b> {{ pokemon.types[0].type.name }}</p>
+  </ion-card-content>
+</ion-card>
