@@ -1,19 +1,27 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Pokédex
-    </ion-title>
+    <ion-title> Pokédex </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Pokédex</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="pokemon-grid">
+    <ion-card
+      *ngFor="let pokemon of pokemons"
+      [class]="'type-' + pokemon.types[0].type.name"
+      (click)="openPokemonDetail(pokemon)"
+    >
+      <div class="pokemon-image">
+        <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" />
+      </div>
 
-  <div>
-    <app-pokemon-card ></app-pokemon-card>
+      <ion-card-header>
+        <ion-card-title>{{ pokemon.name }}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <span class="pokemon-type"> {{ pokemon.types[0].type.name }} </span>
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>

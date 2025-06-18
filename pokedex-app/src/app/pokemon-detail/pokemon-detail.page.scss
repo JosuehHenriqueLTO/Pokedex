@@ -1,0 +1,215 @@
+$breakpoint-mobile: 576px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 992px;
+
+ion-content {
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  
+  @media (min-width: $breakpoint-tablet) {
+    --padding-start: 20px;
+    --padding-end: 20px;
+    --padding-top: 16px;
+    --padding-bottom: 16px;
+  }
+  
+  &.type-normal-bg { --background: #f5f5f5; }
+  &.type-fire-bg { --background: #ffdfd7; }
+  &.type-water-bg { --background: #d7e7ff; }
+  &.type-electric-bg { --background: #fff6d7; }
+  &.type-grass-bg { --background: #d7f0d7; }
+  &.type-ice-bg { --background: #e7ffff; }
+  &.type-fighting-bg { --background: #ffd7d7; }
+  &.type-poison-bg { --background: #e7d7f0; }
+  &.type-ground-bg { --background: #f5e7d7; }
+  &.type-flying-bg { --background: #e7e7ff; }
+  &.type-psychic-bg { --background: #ffd7e7; }
+  &.type-bug-bg { --background: #f0f5d7; }
+  &.type-rock-bg { --background: #f0e7d7; }
+  &.type-ghost-bg { --background: #d7d7e7; }
+  &.type-dragon-bg { --background: #d7d7ff; }
+  &.type-dark-bg { --background: #d7d7d7; }
+  &.type-steel-bg { --background: #e7e7f0; }
+  &.type-fairy-bg { --background: #ffd7e7; }
+}
+
+.pokemon-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  
+  @media (min-width: $breakpoint-mobile) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+  }
+  
+  .pokemon-id {
+    font-size: 1rem;
+    color: #666;
+    font-weight: bold;
+    
+    @media (min-width: $breakpoint-tablet) {
+      font-size: 1.2rem;
+    }
+  }
+  
+  .types-container {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+}
+
+.pokemon-image {
+  text-align: center;
+  padding: 16px;
+  
+  @media (min-width: $breakpoint-tablet) {
+    padding: 24px;
+  }
+  
+  img {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+    
+    @media (min-width: $breakpoint-mobile) {
+      width: 180px;
+      height: 180px;
+    }
+    
+    @media (min-width: $breakpoint-tablet) {
+      width: 200px;
+      height: 200px;
+    }
+    
+    @media (min-width: $breakpoint-desktop) {
+      width: 220px;
+      height: 220px;
+    }
+  }
+}
+
+.stats-card {
+  margin: 12px;
+  border-radius: 12px;
+  
+  @media (min-width: $breakpoint-tablet) {
+    margin: 20px;
+    border-radius: 15px;
+  }
+  
+  ion-card-header {
+    padding-bottom: 0;
+    
+    ion-card-title {
+      font-size: 1.2rem;
+      
+      @media (min-width: $breakpoint-tablet) {
+        font-size: 1.4rem;
+      }
+    }
+  }
+  
+  .stat-row {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    
+    @media (min-width: $breakpoint-mobile) {
+      flex-wrap: nowrap;
+    }
+    
+    .stat-name {
+      display: inline-block;
+      width: 100px;
+      text-transform: capitalize;
+      font-size: 0.9rem;
+      
+      @media (min-width: $breakpoint-tablet) {
+        font-size: 1rem;
+      }
+    }
+    
+    .stat-value {
+      display: inline-block;
+      width: 40px;
+      text-align: right;
+      margin-right: 10px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      
+      @media (min-width: $breakpoint-tablet) {
+        font-size: 1rem;
+      }
+    }
+    
+    ion-progress-bar {
+      display: inline-block;
+      width: 100%;
+      margin-top: 4px;
+      
+      @media (min-width: $breakpoint-mobile) {
+        width: calc(100% - 150px);
+        margin-top: 0;
+      }
+    }
+  }
+  
+  .physical-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 20px;
+    text-align: center;
+    
+    @media (min-width: $breakpoint-mobile) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    
+    div {
+      span {
+        display: block;
+        font-size: 0.9rem;
+        color: #666;
+      }
+      
+      strong {
+        display: block;
+        font-size: 1.1rem;
+        margin-top: 4px;
+        color: #333;
+        
+        @media (min-width: $breakpoint-tablet) {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}
+
+.pokemon-type {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+  
+  @media (min-width: $breakpoint-tablet) {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+
