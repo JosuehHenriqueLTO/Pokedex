@@ -1,28 +1,257 @@
-#container {
-  text-align: center;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+$breakpoint-mobile: 576px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 992px;
+$breakpoint-large: 1200px;
+
+ion-header {
+  --background: linear-gradient(to right, #ff0000, #cc0000);
+  --color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  
+  ion-toolbar {
+    --background: transparent;
+    padding: 8px 0;
+    
+    @media (min-width: $breakpoint-tablet) {
+      padding: 12px 0;
+    }
+    
+    ion-title {
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+      position: relative;
+      font-size: 1.2rem;
+      
+      @media (min-width: $breakpoint-tablet) {
+        font-size: 1.5rem;
+      }
+      
+      &::after {
+        content: '';
+        display: block;
+        width: 30px;
+        height: 4px;
+        background: #ffde00;
+        margin: 5px auto 0;
+        border-radius: 2px;
+        
+        @media (min-width: $breakpoint-tablet) {
+          width: 40px;
+          height: 5px;
+          margin: 8px auto 0;
+        }
+      }
+    }
+  }
 }
+
 ion-content {
-  background-color: #8c8c8c;
+  --background: #f5f5f5 url('https://assets.pokemon.com/static2/_ui/img/chrome/body_bg.png');
+  --padding-start: 8px;
+  --padding-end: 8px;
+  
+  @media (min-width: $breakpoint-tablet) {
+    --padding-start: 16px;
+    --padding-end: 16px;
+  }
+  
+  .pokemon-grid {
+    display: grid;
+    gap: 12px;
+    padding: 8px;
+    max-width: 1200px;
+    margin: 0 auto;
+    
+    grid-template-columns: repeat(2, 1fr);
+    
+    @media (min-width: $breakpoint-mobile) {
+      gap: 16px;
+      padding: 12px;
+    }
+    
+    @media (min-width: $breakpoint-tablet) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 16px;
+    }
+    
+    @media (min-width: $breakpoint-desktop) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    
+    @media (min-width: $breakpoint-large) {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
 }
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
+ion-card {
   margin: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  background: white;
+  border: 3px solid white;
+  position: relative;
+  
+  @media (min-width: $breakpoint-tablet) {
+    border-radius: 15px;
+    border-width: 4px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  &:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    z-index: 1;
+  }
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.5);
+    
+    @media (min-width: $breakpoint-tablet) {
+      height: 5px;
+    }
+  }
+  
+  .pokemon-image {
+    width: 100%;
+    height: 100px;
+    padding: 12px;
+    background: radial-gradient(circle at center, #f8f8f8, #e0e0e0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    @media (min-width: $breakpoint-mobile) {
+      height: 110px;
+    }
+    
+    @media (min-width: $breakpoint-tablet) {
+      height: 120px;
+      padding: 15px;
+    }
+    
+    img {
+      width: auto;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.2));
+      transition: transform 0.3s ease;
+    }
+  }
+  
+  ion-card-header {
+    padding: 8px 6px 0;
+    
+    @media (min-width: $breakpoint-tablet) {
+      padding: 12px 8px 0;
+    }
+    
+    ion-card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #333;
+      text-align: center;
+      text-transform: capitalize;
+      letter-spacing: 0.5px;
+      
+      @media (min-width: $breakpoint-mobile) {
+        font-size: 1.1rem;
+      }
+      
+      @media (min-width: $breakpoint-tablet) {
+        font-size: 1.2rem;
+      }
+    }
+  }
+  
+  ion-card-content {
+    padding: 6px 8px 10px;
+    text-align: center;
+    
+    @media (min-width: $breakpoint-tablet) {
+      padding: 8px 12px 12px;
+    }
+    
+    .pokemon-type {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 16px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: white;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+      
+      @media (min-width: $breakpoint-mobile) {
+        font-size: 0.75rem;
+        padding: 4px 12px;
+      }
+      
+      @media (min-width: $breakpoint-tablet) {
+        font-size: 0.8rem;
+      }
+    }
+  }
 }
 
-#container a {
-  text-decoration: none;
+$pokemon-types: (
+  normal: (#A8A878, #8D8D5A),
+  fighting: (#C03028, #9D2720),
+  flying: (#A890F0, #9078C8),
+  poison: (#A040A0, #803380),
+  ground: (#E0C068, #C9A84B),
+  rock: (#B8A038, #958521),
+  bug: (#A8B820, #8D9A1B),
+  ghost: (#705898, #554374),
+  steel: (#B8B8D0, #9797BA),
+  grass: (#78C850, #5CA935),
+  fire: (#F08030, #E67329),
+  water: (#6890F0, #5A82D8),
+  electric: (#F8D030, #F0C108),
+  psychic: (#F85888, #E85078),
+  ice: (#98D8D8, #7FBDBD),
+  dragon: (#7038F8, #5928D1),
+  dark: (#705848, #513F34),
+  fairy: (#d8526f, #b3606f),
+);
+
+@each $type, $colors in $pokemon-types {
+  .type-#{$type} {
+    ion-card-content .pokemon-type {
+      background: linear-gradient(to bottom, nth($colors, 1), nth($colors, 2));
+    }
+    
+    .pokemon-image {
+      background: radial-gradient(circle at center, 
+                lighten(nth($colors, 1), 40%), 
+                lighten(nth($colors, 2), 30%));
+    }
+  }
+}
+
+/* Efeito de loading */
+ion-spinner {
+  --color: #ff0000;
+  margin: 30px auto;
+  display: block;
+  width: 40px;
+  height: 40px;
+  
+  @media (min-width: $breakpoint-tablet) {
+    width: 48px;
+    height: 48px;
+    margin: 40px auto;
+  }
 }
