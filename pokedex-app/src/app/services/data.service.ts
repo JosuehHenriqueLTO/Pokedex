@@ -10,11 +10,11 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getPokemons(limit: number = 151): Observable<any> {
-    return this.http.get(`${this.apiUrl}/pokemon?limit=${limit}`);
+  getPokemons(limit: number = 50, offset: number = 0): Observable<any> {
+    return this.http.get(`${this.apiUrl}/pokemon?limit=${limit}&offset=${offset}`);
   }
 
-  getPokemonDetails(name: string) {
+  getPokemonDetails(name: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/pokemon/${name}`);
   }
 }

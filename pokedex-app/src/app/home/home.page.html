@@ -1,27 +1,35 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title> Pokédex </ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/favorites']" routerDirection="forward">
+        <ion-icon name="heart" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div class="pokemon-grid">
-    <ion-card
-      *ngFor="let pokemon of pokemons"
-      [class]="'type-' + pokemon.types[0].type.name"
-      (click)="openPokemonDetail(pokemon)"
-    >
+    <ion-card *ngFor="let pokemon of pokemons | paginate: { itemsPerPage: 50, currentPage: page, totalItems: totalPokemons }"
+              [class]="'type-' + pokemon.types[0].type.name" (click)="openPokemonDetail(pokemon)">
       <div class="pokemon-image">
         <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" />
       </div>
 
       <ion-card-header>
-        <ion-card-title>{{ pokemon.name }}</ion-card-title>
+        <ion-card-title>{{ pokemon.name | titlecase }}</ion-card-title>
       </ion-card-header>
 
       <ion-card-content>
-        <span class="pokemon-type"> {{ pokemon.types[0].type.name }} </span>
+        <span class="pokemon-type">{{ pokemon.types[0].type.name | titlecase }}</span>
+        <ion-button fill="clear" (click)="toggleFavorite(pokemon, $event)">
+          <ion-icon [name]="isFavorite(pokemon.name) ? 'heart' : 'heart-outline'" 
+                   [color]="isFavorite(pokemon.name) ? 'danger' : 'medium'"></ion-icon>
+        </ion-button>
       </ion-card-content>
     </ion-card>
   </div>
+
+  <pagination-controls (pageChange)="page = $event; pokemons = []; getPokemons()"></pagination-controls>
 </ion-content>
